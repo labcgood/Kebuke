@@ -50,17 +50,23 @@ class HomeViewController: UIViewController {
             imageView.contentMode = .scaleAspectFit
             adStackView.addArrangedSubview(imageView)
         }
-        let firstImageView = UIImageView(image: UIImage(named: imageNameArray[0]))
-        firstImageView.contentMode = .scaleAspectFit
-        adStackView.addArrangedSubview(firstImageView)
+        let firstAdImageView = UIImageView(image: UIImage(named: imageNameArray[0]))
+        firstAdImageView.contentMode = .scaleAspectFit
+        adStackView.addArrangedSubview(firstAdImageView)
     }
     
     func setupTimer() {
-        if bannerTimer != nil {
-            bannerTimer?.invalidate()
-        }
+        stopTimer()
         
-        self.bannerTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(autoScroll), userInfo: nil, repeats: true)
+        self.bannerTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { timer in
+            if (self.adImages.count > 1) {
+                let index = (self.adPageControl.currentPage + 1) % (self.adImages.count + 1)
+                self.adScrollView.setContentOffset(CGPoint(x: CGFloat(index + 1) * self.view.frame.width, y: 0), animated: true)
+            } else {
+                self.stopTimer()
+            }
+        })
+        // self.bannerTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(autoScroll), userInfo: nil, repeats: true)
     }
     
     func stopTimer() {
@@ -69,15 +75,15 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @objc func autoScroll() {
-        // 如果數量大於一，滑動
-        if (adImages.count > 1) {
-            let index = (adPageControl.currentPage + 1) % (adImages.count + 1)
-            adScrollView.setContentOffset(CGPoint(x: CGFloat(index + 1) * view.frame.width, y: 0), animated: true)
-        } else {
-            stopTimer()
-        }
-    }
+//    @objc func autoScroll() {
+//        // 如果數量大於一，滑動
+//        if (adImages.count > 1) {
+//            let index = (adPageControl.currentPage + 1) % (adImages.count + 1)
+//            adScrollView.setContentOffset(CGPoint(x: CGFloat(index + 1) * view.frame.width, y: 0), animated: true)
+//        } else {
+//            stopTimer()
+//        }
+//    }
     
     
     /*
