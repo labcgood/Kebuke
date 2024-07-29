@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D5740482C5229D70025C4BC /* DrinkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5740472C5229D70025C4BC /* DrinkCollectionViewCell.swift */; };
+		0D57404A2C52321C0025C4BC /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5740492C52321C0025C4BC /* Drink.swift */; };
 		0DD2F1B12C48FE4000F408A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD2F1B02C48FE4000F408A1 /* AppDelegate.swift */; };
 		0DD2F1B32C48FE4000F408A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD2F1B22C48FE4000F408A1 /* SceneDelegate.swift */; };
 		0DD2F1B82C48FE4000F408A1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0DD2F1B72C48FE4000F408A1 /* Base */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D5740472C5229D70025C4BC /* DrinkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCollectionViewCell.swift; sourceTree = "<group>"; };
+		0D5740492C52321C0025C4BC /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		0DD2F1AD2C48FE4000F408A1 /* Kebuke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kebuke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD2F1B02C48FE4000F408A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DD2F1B22C48FE4000F408A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 				0DD2F1B22C48FE4000F408A1 /* SceneDelegate.swift */,
 				0DD2F1B62C48FE4000F408A1 /* Main.storyboard */,
 				0DD2F1C42C4903A600F408A1 /* HomeViewController.swift */,
+				0D5740492C52321C0025C4BC /* Drink.swift */,
+				0D5740472C5229D70025C4BC /* DrinkCollectionViewCell.swift */,
 				0DD2F1C62C4915E700F408A1 /* OrderViewController.swift */,
 				0DE6A8302C4A7CAC00C2B165 /* OrderDetailViewController.swift */,
 				0DD2F1B92C48FE4100F408A1 /* Assets.xcassets */,
@@ -147,7 +153,9 @@
 				0DD2F1C72C4915E700F408A1 /* OrderViewController.swift in Sources */,
 				0DD2F1B12C48FE4000F408A1 /* AppDelegate.swift in Sources */,
 				0DD2F1B32C48FE4000F408A1 /* SceneDelegate.swift in Sources */,
+				0D5740482C5229D70025C4BC /* DrinkCollectionViewCell.swift in Sources */,
 				0DE6A8312C4A7CAC00C2B165 /* OrderDetailViewController.swift in Sources */,
+				0D57404A2C52321C0025C4BC /* Drink.swift in Sources */,
 				0DD2F1C52C4903A600F408A1 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

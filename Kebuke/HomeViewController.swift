@@ -14,25 +14,35 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var adImageView: UIImageView!
     @IBOutlet weak var adPageControl: UIPageControl!
     @IBOutlet weak var drinkCollectionView: UICollectionView!
+    @IBOutlet var drinkTypeButtons: [UIButton]!
     
     
     var adImages = ["ad1", "ad2", "ad3", "ad4", "ad5"]
     var bannerTimer: Timer?
+    
+    var selectDrinks:[Drink] = [] //分類後要顯示的飲料
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         adScrollView.delegate = self
-//        drinkCollectionView.delegate = self
-//        drinkCollectionView.dataSource = self
-        
+        drinkCollectionView.delegate = self
+        drinkCollectionView.dataSource = self
+        for i in 0...drinkTypeButtons.count-1 {
+            drinkTypeButtons[i].layer.cornerRadius = 17
+        }
         
         setupAdPageControl()
         addAd(imageNameArray: adImages)
         setupTimer()
+        
+        // 初始要顯示的飲料
+        filterDrinkOfType(type: .季節限定)
+        self.drinkCollectionView.reloadData()
     }
     
+    // 設定PageControl
     func setupAdPageControl() {
         adPageControl.numberOfPages = adImages.count
         adPageControl.pageIndicatorTintColor = .white
@@ -41,8 +51,6 @@ class HomeViewController: UIViewController {
     }
     
     func addAd(imageNameArray: [String]) {
-        // 初始顯示位置
-        adScrollView.contentOffset = CGPoint(x: view.frame.width, y: 0)
         // 加入廣告圖片
         adImageView.image = UIImage(named: imageNameArray[imageNameArray.count-1])
         for i in 0...imageNameArray.count-1 {
@@ -53,10 +61,14 @@ class HomeViewController: UIViewController {
         let firstAdImageView = UIImageView(image: UIImage(named: imageNameArray[0]))
         firstAdImageView.contentMode = .scaleAspectFit
         adStackView.addArrangedSubview(firstAdImageView)
+        
+        // 初始顯示位置
+        adScrollView.contentOffset = CGPoint(x: view.frame.width, y: 0)
     }
     
+    // 設定Timer 3秒切換一次廣告
     func setupTimer() {
-        stopTimer()
+        stopTimer() // 確保生成Timer前，消除已存在的Timer，以免重複存在
         
         self.bannerTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { timer in
             if (self.adImages.count > 1) {
@@ -66,25 +78,55 @@ class HomeViewController: UIViewController {
                 self.stopTimer()
             }
         })
+        RunLoop.current.add(self.bannerTimer!, forMode: .common)
         // self.bannerTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(autoScroll), userInfo: nil, repeats: true)
     }
+    /*
+        @objc func autoScroll() {
+            // 如果數量大於一，滑動
+            if (adImages.count > 1) {
+                let index = (adPageControl.currentPage + 1) % (adImages.count + 1)
+                adScrollView.setContentOffset(CGPoint(x: CGFloat(index + 1) * view.frame.width, y: 0), animated: true)
+            } else {
+                stopTimer()
+            }
+        }
+    */
     
+    // 消除已存在的Timer
     func stopTimer() {
         if bannerTimer != nil {
             bannerTimer?.invalidate()
         }
     }
     
-//    @objc func autoScroll() {
-//        // 如果數量大於一，滑動
-//        if (adImages.count > 1) {
-//            let index = (adPageControl.currentPage + 1) % (adImages.count + 1)
-//            adScrollView.setContentOffset(CGPoint(x: CGFloat(index + 1) * view.frame.width, y: 0), animated: true)
-//        } else {
-//            stopTimer()
-//        }
-//    }
+    // 判斷目前選取的飲料種類
+    @IBAction func selectDrinkType(_ sender: UIButton) {
+        let option = DrinkOption(rawValue: sender.tag)
+        switch option {
+        case .季節限定:
+            filterDrinkOfType(type: .季節限定)
+        case .單品茶:
+            filterDrinkOfType(type: .單品茶)
+        case .調茶:
+            filterDrinkOfType(type: .調茶)
+        case .雲蓋:
+            filterDrinkOfType(type: .雲蓋)
+        case .歐蕾:
+            filterDrinkOfType(type: .歐蕾)
+        default:
+            break
+        }
+        self.drinkCollectionView.reloadData()
+    }
     
+    // 篩選各種類的飲料，設定給selectDrinks，讓CollectionView顯示出來
+    func filterDrinkOfType(type: Type) {
+        let currentDrinkType = drinks.filter { $0.type == type }
+        selectDrinks = currentDrinkType
+    }
+    
+
     
     /*
     // MARK: - Navigation
@@ -98,47 +140,80 @@ class HomeViewController: UIViewController {
 
 }
 
+// 擴展HomeViewController，遵循UIScrollViewDelegate來控制滑動廣告時Timer的變化(滑動時應該停止，放開時再次啟動)，以及無限輪播效果(上文步驟裡有提到的效果)
+// 在使用功能時都先判斷scrollView是我們的adScrollView，不然在其他元件滑動時，會影響到Timer運行，我遇到的問題就是滑動飲料的CollectionView時，廣告就會停止輪播
 extension HomeViewController: UIScrollViewDelegate {
     
+    // scrollView開始滑動時，消除Timer
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if adImages.count > 0 {
-            stopTimer()
+        if scrollView == adScrollView {
+            if adImages.count > 0 {
+                stopTimer()
+            }
         }
     }
     
+    // scrollView停止滑動時，生成Timer，開始輪播
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if adImages.count > 0 {
-            setupTimer()
+        if scrollView == adScrollView {
+            if adImages.count > 0 {
+                setupTimer()
+            }
         }
     }
     
+    // scrollView內容發生滾動時，無限輪播、PageControl轉跳
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentX = adScrollView.contentOffset.x
-        if currentX == 0 {
-            let lastAdContentOffsetX = scrollView.frame.width * CGFloat(adImages.count)
-            adScrollView.contentOffset = CGPoint(x: lastAdContentOffsetX, y: 0)
-        } else if currentX == scrollView.frame.width * CGFloat(adImages.count + 1) {
-            adScrollView.contentOffset = CGPoint(x: scrollView.frame.width, y: 0)
-        }
-        
-        if scrollView == self.adScrollView {
-            let page = round(scrollView.contentOffset.x / scrollView.frame.width) - 1
-            self.adPageControl.currentPage = Int(page)
+        if scrollView == adScrollView {
+            let currentX = adScrollView.contentOffset.x
+            if currentX == 0 {
+                let lastAdContentOffsetX = scrollView.frame.width * CGFloat(adImages.count)
+                adScrollView.contentOffset = CGPoint(x: lastAdContentOffsetX, y: 0)
+            } else if currentX == scrollView.frame.width * CGFloat(adImages.count + 1) {
+                adScrollView.contentOffset = CGPoint(x: scrollView.frame.width, y: 0)
+            }
+            
+            if scrollView == self.adScrollView {
+                let page = round(scrollView.contentOffset.x / scrollView.frame.width) - 1
+                self.adPageControl.currentPage = Int(page)
+            }
         }
     }
 
     
 }
 
-
-//extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//    
-//    
-//}
+// 擴展HomeViewController，遵循UICollectionViewDelegate、UICollectionViewDataSource，顯示我們的飲料
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        selectDrinks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DrinkCollectionViewCell.reuseIdentifier, for: indexPath) as! DrinkCollectionViewCell
+        let image = UIImage(named: selectDrinks[indexPath.item].name)
+        cell.drinkImageView.image = image
+        cell.drinkNameLabel.text = selectDrinks[indexPath.item].name
+        cell.drinkPriceLabel.text = "中:\(selectDrinks[indexPath.item].middlePrice)／大:\(selectDrinks[indexPath.item].largePrice)"
+        setupCellSize()
+        return cell
+    }
+    
+    func setupCellSize() {
+        let itemSpace: Double = 0
+        let columCount: Double = 2
+        // 為了使用flowLayout屬性(用來排版、控制cell大小)，所以我們這邊進行轉型。
+        let flowLayout = self.drinkCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        
+        // cell大小
+        let width = floor((self.drinkCollectionView.bounds.width - itemSpace * (columCount-1)) / columCount)
+        flowLayout?.itemSize = CGSize(width: width, height: width)
+        // 將預設尺寸設為0，讓CollectionViewCell不會用AutoLayout去算尺寸，或在StoryBoard把CollectionViewCell的EstimateSize設定成None也可以
+        flowLayout?.estimatedItemSize = .zero
+        // 間距設定
+        flowLayout?.minimumLineSpacing = itemSpace
+        flowLayout?.minimumInteritemSpacing = itemSpace
+    }
+    
+}
