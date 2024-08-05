@@ -180,6 +180,7 @@
                                             <outlet property="drinkImageView" destination="mpt-ks-epX" id="2I9-Ye-fUw"/>
                                             <outlet property="drinkNameLabel" destination="xLm-Hu-6f7" id="VAC-sY-Onv"/>
                                             <outlet property="drinkPriceLabel" destination="DPl-SF-RKY" id="jKA-EY-wkz"/>
+                                            <segue destination="2Kc-r7-GUk" kind="show" destinationCreationSelector="toOrderViewController:" id="7vr-yS-gp5"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -225,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyT-CM-sDS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664.885496183206" y="-387.32394366197184"/>
+            <point key="canvasLocation" x="1103" y="-387"/>
         </scene>
         <!--購物車-->
         <scene sceneID="7i7-pP-35a">
@@ -248,23 +249,23 @@
             <objects>
                 <viewController id="2Kc-r7-GUk" customClass="OrderViewController" customModule="Kebuke" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kjc-rY-NxY">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金蘋春芽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkt-ka-zYD">
-                                <rect key="frame" x="136" y="279" width="121.33333333333331" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="金蘋春芽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkt-ka-zYD">
+                                <rect key="frame" x="136" y="321.33333333333331" width="121.33333333333331" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.69803921568627447" green="0.5725490196078431" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蘋果汁與蜂蜜綠茶的清爽特調" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDl-XX-dGb">
-                                <rect key="frame" x="97" y="325" width="199" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="蘋果汁與蜂蜜綠茶的清爽特調" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDl-XX-dGb">
+                                <rect key="frame" x="97" y="367.33333333333331" width="199" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="LCR-xo-or5">
-                                <rect key="frame" x="20" y="373" width="353" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LCR-xo-or5" userLabel="容量Stack View">
+                                <rect key="frame" x="10" y="415.33333333333331" width="373" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="容量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLS-qL-y9c">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="31"/>
@@ -272,22 +273,25 @@
                                         <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="RcN-ra-FwX">
-                                        <rect key="frame" x="66" y="0.0" width="287" height="32"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RcN-ra-FwX">
+                                        <rect key="frame" x="51" y="0.0" width="322" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
-                                            <segment title="中杯"/>
                                             <segment title="大杯"/>
+                                            <segment title="中杯"/>
                                         </segments>
                                         <color key="selectedSegmentTintColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="selecDrinkContent:" destination="2Kc-r7-GUk" eventType="valueChanged" id="GOh-hc-f9e"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="QLS-qL-y9c" firstAttribute="leading" secondItem="LCR-xo-or5" secondAttribute="leading" id="dzQ-Tm-xBK"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="G3A-jI-HUQ">
-                                <rect key="frame" x="20" y="429" width="353" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G3A-jI-HUQ" userLabel="糖量Stack View">
+                                <rect key="frame" x="10" y="471.33333333333331" width="373" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="糖量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RH-FD-U4q">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="31"/>
@@ -295,8 +299,8 @@
                                         <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zZf-1B-3Y9">
-                                        <rect key="frame" x="66" y="0.0" width="287" height="32"/>
+                                    <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zZf-1B-3Y9">
+                                        <rect key="frame" x="51" y="0.0" width="322" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
                                             <segment title="正常"/>
@@ -308,14 +312,17 @@
                                             <segment title="無"/>
                                         </segments>
                                         <color key="selectedSegmentTintColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="selecDrinkContent:" destination="2Kc-r7-GUk" eventType="valueChanged" id="HYS-nP-zVn"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2RH-FD-U4q" firstAttribute="leading" secondItem="G3A-jI-HUQ" secondAttribute="leading" id="5wy-7V-nkU"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="TtZ-fC-g7k">
-                                <rect key="frame" x="20" y="485" width="353" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TtZ-fC-g7k" userLabel="冰量Stack View">
+                                <rect key="frame" x="10" y="527.33333333333337" width="373" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="冰量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-1H-Tt6">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="31"/>
@@ -323,8 +330,8 @@
                                         <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zfn-Of-A0Q">
-                                        <rect key="frame" x="66" y="0.0" width="287" height="32"/>
+                                    <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zfn-Of-A0Q">
+                                        <rect key="frame" x="51" y="0.0" width="322" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
                                             <segment title="正常"/>
@@ -337,14 +344,17 @@
                                             <segment title="熱"/>
                                         </segments>
                                         <color key="selectedSegmentTintColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="selecDrinkContent:" destination="2Kc-r7-GUk" eventType="valueChanged" id="swg-Cg-lcT"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4NT-1H-Tt6" firstAttribute="leading" secondItem="TtZ-fC-g7k" secondAttribute="leading" id="jLf-9d-REp"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="z5v-Vp-Gg1">
-                                <rect key="frame" x="20" y="541" width="353" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="z5v-Vp-Gg1" userLabel="加料Stack View">
+                                <rect key="frame" x="10" y="583.33333333333337" width="373" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="加料" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuS-Up-Wj1">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="31"/>
@@ -352,8 +362,8 @@
                                         <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="KBP-NI-jaj">
-                                        <rect key="frame" x="66" y="0.0" width="287" height="32"/>
+                                    <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="KBP-NI-jaj">
+                                        <rect key="frame" x="51" y="0.0" width="322" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
                                             <segment title="白玉"/>
@@ -362,6 +372,9 @@
                                             <segment title="無"/>
                                         </segments>
                                         <color key="selectedSegmentTintColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="selecDrinkContent:" destination="2Kc-r7-GUk" eventType="valueChanged" id="kW9-gd-YOy"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
@@ -369,33 +382,39 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="杯數" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2p-K5-Gk5">
-                                <rect key="frame" x="20" y="602.33333333333337" width="41" height="24"/>
+                                <rect key="frame" x="10" y="644.66666666666663" width="41" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="RFF-zt-HZ8">
-                                <rect key="frame" x="86" y="597" width="287" height="34.333333333333371"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="RFF-zt-HZ8" userLabel="杯數Stack View">
+                                <rect key="frame" x="76" y="639.33333333333337" width="307" height="34.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cq-VX-mnC">
-                                        <rect key="frame" x="0.0" y="0.0" width="79" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="minus.circle.fill" catalog="system">
                                             <color key="baseForegroundColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="orderCount:" destination="2Kc-r7-GUk" eventType="touchUpInside" id="DwU-7z-eYX"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bG-bB-GgD">
-                                        <rect key="frame" x="104" y="0.0" width="79" height="34.333333333333336"/>
+                                        <rect key="frame" x="110.66666666666666" y="0.0" width="85.666666666666657" height="34.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYb-Nv-YLK">
-                                        <rect key="frame" x="208" y="0.0" width="79" height="34.333333333333336"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYb-Nv-YLK">
+                                        <rect key="frame" x="221.33333333333329" y="0.0" width="85.666666666666657" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system">
                                             <color key="baseForegroundColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="orderCount:" destination="2Kc-r7-GUk" eventType="touchUpInside" id="9e3-Ph-wtQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -403,8 +422,8 @@
                                     <constraint firstItem="9bG-bB-GgD" firstAttribute="width" secondItem="9Cq-VX-mnC" secondAttribute="width" id="3BL-oI-vQT"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="CAa-bZ-UQW">
-                                <rect key="frame" x="20" y="656.33333333333337" width="353" height="34"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="CAa-bZ-UQW" userLabel="訂購人Stack View">
+                                <rect key="frame" x="10" y="698.66666666666663" width="373" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="訂購人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Z8-lx-txN">
                                         <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="34"/>
@@ -412,27 +431,27 @@
                                         <color key="textColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入訂購人名稱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBw-hS-Em6">
-                                        <rect key="frame" x="86.333333333333343" y="0.0" width="266.66666666666663" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入訂購人名稱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XBw-hS-Em6">
+                                        <rect key="frame" x="86.333333333333343" y="0.0" width="286.66666666666663" height="34"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbG-Qf-dwH">
-                                <rect key="frame" x="100" y="725.33333333333337" width="193" height="34.333333333333371"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbG-Qf-dwH">
+                                <rect key="frame" x="119.33333333333333" y="767.66666666666663" width="154.33333333333337" height="34.333333333333371"/>
                                 <color key="tintColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title=" 加  入  購  物  車 " cornerStyle="large">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addToCart:" destination="2Kc-r7-GUk" eventType="touchUpInside" id="KG3-by-OIB"/>
+                                </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qJD-25-DAI">
-                                <rect key="frame" x="76" y="60.666666666666657" width="240" height="197.00000000000003"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="LCN-qD-a9E"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qJD-25-DAI">
+                                <rect key="frame" x="76" y="11.666666666666657" width="240" height="298.33333333333326"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eJD-1d-Z0I"/>
@@ -442,7 +461,7 @@
                             <constraint firstItem="CAa-bZ-UQW" firstAttribute="top" secondItem="RFF-zt-HZ8" secondAttribute="bottom" constant="25" id="3B1-Vo-lYg"/>
                             <constraint firstItem="qJD-25-DAI" firstAttribute="leading" secondItem="eJD-1d-Z0I" secondAttribute="leading" constant="76" id="Aim-Dv-pf1"/>
                             <constraint firstItem="G3A-jI-HUQ" firstAttribute="top" secondItem="LCR-xo-or5" secondAttribute="bottom" constant="25" id="B8h-g5-R1o"/>
-                            <constraint firstItem="hkt-ka-zYD" firstAttribute="top" secondItem="qJD-25-DAI" secondAttribute="bottom" constant="20" id="EjD-xO-YAd"/>
+                            <constraint firstItem="hkt-ka-zYD" firstAttribute="top" secondItem="qJD-25-DAI" secondAttribute="bottom" constant="10" id="EjD-xO-YAd"/>
                             <constraint firstItem="CAa-bZ-UQW" firstAttribute="trailing" secondItem="LCR-xo-or5" secondAttribute="trailing" id="Evb-Jb-NAO"/>
                             <constraint firstItem="LCR-xo-or5" firstAttribute="top" secondItem="eDl-XX-dGb" secondAttribute="bottom" constant="30" id="Gne-X1-jaa"/>
                             <constraint firstItem="hkt-ka-zYD" firstAttribute="centerX" secondItem="Kjc-rY-NxY" secondAttribute="centerX" id="KPz-je-N8i"/>
@@ -450,20 +469,19 @@
                             <constraint firstItem="RFF-zt-HZ8" firstAttribute="trailing" secondItem="LCR-xo-or5" secondAttribute="trailing" id="MOt-et-feC"/>
                             <constraint firstItem="RFF-zt-HZ8" firstAttribute="leading" secondItem="P2p-K5-Gk5" secondAttribute="trailing" constant="25" id="NQU-uK-oJ6"/>
                             <constraint firstItem="z5v-Vp-Gg1" firstAttribute="leading" secondItem="LCR-xo-or5" secondAttribute="leading" id="NRG-8c-vfR"/>
-                            <constraint firstItem="eJD-1d-Z0I" firstAttribute="trailing" secondItem="LCR-xo-or5" secondAttribute="trailing" constant="20" id="Oti-e7-7QM"/>
+                            <constraint firstItem="eJD-1d-Z0I" firstAttribute="trailing" secondItem="LCR-xo-or5" secondAttribute="trailing" constant="10" id="Oti-e7-7QM"/>
                             <constraint firstItem="eDl-XX-dGb" firstAttribute="top" secondItem="hkt-ka-zYD" secondAttribute="bottom" constant="10" id="Q2O-ru-5EV"/>
                             <constraint firstItem="qbG-Qf-dwH" firstAttribute="top" secondItem="CAa-bZ-UQW" secondAttribute="bottom" constant="35" id="QLd-hW-hbf"/>
                             <constraint firstItem="eJD-1d-Z0I" firstAttribute="trailing" secondItem="qJD-25-DAI" secondAttribute="trailing" constant="77" id="QYH-Dl-vjR"/>
-                            <constraint firstItem="LCR-xo-or5" firstAttribute="leading" secondItem="eJD-1d-Z0I" secondAttribute="leading" constant="20" id="TQJ-Tm-79K"/>
-                            <constraint firstItem="eJD-1d-Z0I" firstAttribute="trailing" secondItem="qbG-Qf-dwH" secondAttribute="trailing" constant="100" id="Vup-aA-dy7"/>
+                            <constraint firstItem="LCR-xo-or5" firstAttribute="leading" secondItem="eJD-1d-Z0I" secondAttribute="leading" constant="10" id="TQJ-Tm-79K"/>
                             <constraint firstItem="qbG-Qf-dwH" firstAttribute="centerX" secondItem="Kjc-rY-NxY" secondAttribute="centerX" id="Xy8-cY-pAc"/>
                             <constraint firstItem="TtZ-fC-g7k" firstAttribute="leading" secondItem="LCR-xo-or5" secondAttribute="leading" id="Y06-ec-VDx"/>
                             <constraint firstItem="G3A-jI-HUQ" firstAttribute="trailing" secondItem="LCR-xo-or5" secondAttribute="trailing" id="Yn9-G2-EdL"/>
                             <constraint firstItem="RFF-zt-HZ8" firstAttribute="centerY" secondItem="P2p-K5-Gk5" secondAttribute="centerY" id="dpY-Ok-5iP"/>
                             <constraint firstItem="G3A-jI-HUQ" firstAttribute="leading" secondItem="LCR-xo-or5" secondAttribute="leading" id="eeF-ff-nP5"/>
                             <constraint firstItem="z5v-Vp-Gg1" firstAttribute="top" secondItem="TtZ-fC-g7k" secondAttribute="bottom" constant="25" id="fo6-qm-xNP"/>
-                            <constraint firstItem="qJD-25-DAI" firstAttribute="top" secondItem="eJD-1d-Z0I" secondAttribute="top" id="iHf-fO-wZd"/>
-                            <constraint firstItem="qbG-Qf-dwH" firstAttribute="leading" secondItem="eJD-1d-Z0I" secondAttribute="leading" constant="100" id="jNV-xu-wm2"/>
+                            <constraint firstItem="qJD-25-DAI" firstAttribute="top" secondItem="eJD-1d-Z0I" secondAttribute="top" constant="10" id="iHf-fO-wZd"/>
+                            <constraint firstItem="eJD-1d-Z0I" firstAttribute="bottom" secondItem="qbG-Qf-dwH" secondAttribute="bottom" constant="40" id="iaK-wP-Byc"/>
                             <constraint firstItem="z5v-Vp-Gg1" firstAttribute="trailing" secondItem="LCR-xo-or5" secondAttribute="trailing" id="o09-Dz-gTB"/>
                             <constraint firstItem="TtZ-fC-g7k" firstAttribute="trailing" secondItem="LCR-xo-or5" secondAttribute="trailing" id="peu-8Q-9WW"/>
                             <constraint firstItem="CAa-bZ-UQW" firstAttribute="leading" secondItem="LCR-xo-or5" secondAttribute="leading" id="pnE-tc-ygL"/>
@@ -473,10 +491,19 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="fxv-gu-AhV"/>
                     <navigationItem key="navigationItem" id="mfn-Bu-dEN"/>
+                    <connections>
+                        <outlet property="addOnsSegmentedControl" destination="KBP-NI-jaj" id="Shy-1N-JN8"/>
+                        <outlet property="buyersNameTextField" destination="XBw-hS-Em6" id="Yra-xd-7qa"/>
+                        <outlet property="drinkDetailLabel" destination="eDl-XX-dGb" id="hoS-jC-Aal"/>
+                        <outlet property="drinkImageView" destination="qJD-25-DAI" id="9nI-Q4-k4e"/>
+                        <outlet property="drinkNameLabel" destination="hkt-ka-zYD" id="RBT-Za-182"/>
+                        <outlet property="iceSegmentedControl" destination="Zfn-Of-A0Q" id="6Ta-Lv-gYU"/>
+                        <outlet property="orderCountLabel" destination="9bG-bB-GgD" id="weR-a6-d4b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JML-ev-84d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2320" y="-387"/>
+            <point key="canvasLocation" x="1779" y="-387"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TZn-od-XuM">

@@ -127,6 +127,14 @@ class HomeViewController: UIViewController {
     }
     
 
+    // 將所點選飲料資料傳到OrderViewController顯示
+    @IBSegueAction func toOrderViewController(_ coder: NSCoder) -> OrderViewController? {
+        let controller = OrderViewController(coder: coder)
+        guard let index = self.drinkCollectionView.indexPathsForSelectedItems?.first?.item else { return nil }
+        controller?.currentShowDrink = selectDrinks[index]
+        return controller
+    }
+    
     
     /*
     // MARK: - Navigation
@@ -179,8 +187,6 @@ extension HomeViewController: UIScrollViewDelegate {
             }
         }
     }
-
-    
 }
 
 // 擴展HomeViewController，遵循UICollectionViewDelegate、UICollectionViewDataSource，顯示我們的飲料
@@ -192,9 +198,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DrinkCollectionViewCell.reuseIdentifier, for: indexPath) as! DrinkCollectionViewCell
+        // 顯示圖片
         let image = UIImage(named: selectDrinks[indexPath.item].name)
         cell.drinkImageView.image = image
-        cell.drinkNameLabel.text = selectDrinks[indexPath.item].name
+        // 顯示飲料名稱(可做熱飲後面+Ⓗ)
+        if selectDrinks[indexPath.item].makeHot == true {
+            cell.drinkNameLabel.text = selectDrinks[indexPath.item].name + "Ⓗ"
+        } else {
+            cell.drinkNameLabel.text = selectDrinks[indexPath.item].name
+        }
+        // 顯示飲料價格
         cell.drinkPriceLabel.text = "中:\(selectDrinks[indexPath.item].middlePrice)／大:\(selectDrinks[indexPath.item].largePrice)"
         setupCellSize()
         return cell
@@ -215,5 +228,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         flowLayout?.minimumLineSpacing = itemSpace
         flowLayout?.minimumInteritemSpacing = itemSpace
     }
+    
     
 }
