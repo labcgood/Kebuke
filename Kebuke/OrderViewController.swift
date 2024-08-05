@@ -173,16 +173,19 @@ extension OrderViewController: UITextFieldDelegate {
         center.addObserver(self, selector: #selector(keyboardHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    // 將View上移
     @objc func keyboardShown(notification: Notification) {
         // 取得鍵盤尺寸
         let info: NSDictionary = notification.userInfo! as NSDictionary
         let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        // 計算鍵盤頂部的y座標、TextField底部的y座標，
+        // 計算鍵盤頂部的y座標、TextField底部的y座標，相減得到兩者距離（且如果數字大於0，就表示有被擋住，小於0則否）
         let keyboardTopY = self.view.frame.height - keyboardSize.height
         let buyersNameTextFieldBottomY = self.buyersNameTextField.convert(buyersNameTextField.bounds, to: self.view).maxY
         let targetY = Int(buyersNameTextFieldBottomY - keyboardTopY)
         
+        // 判斷如果有被遮住就移動（View要往上移，y軸就要是負數）
+        // 除了鍵盤移動的距離，這邊多加了80是因為鍵盤上會有預設輸入選項，這也會擋到TextField，所以我自己測試後決定多+80
         if self.view.frame.minY >= 0 {
             if targetY > 0 {
                 UIView.animate(withDuration: 0.25) {
@@ -192,6 +195,7 @@ extension OrderViewController: UITextFieldDelegate {
         }
     }
     
+    // 將View移動回來
     @objc func keyboardHidden(notification: Notification) {
         UIView.animate(withDuration: 0.25) {
             self.view.frame = CGRect(x: 0, y: 0, width: Int(self.view.frame.width), height: Int(self.view.frame.height))
