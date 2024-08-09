@@ -14,24 +14,34 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var drinkDetailLabel: UILabel!
     @IBOutlet weak var orderCountLabel: UILabel!
     @IBOutlet weak var buyersNameTextField: UITextField!
+    @IBOutlet weak var checkButton: UIButton!
     
-    // 判斷溫、熱飲不能加菓玉用
+    @IBOutlet weak var capacitySegmentedControl: UISegmentedControl!
+    @IBOutlet weak var sugarSegmentedControl: UISegmentedControl!
     @IBOutlet weak var iceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var addOnsSegmentedControl: UISegmentedControl!
+    // 判斷溫、熱飲不能加菓玉用
     var iceSelectIndex = 0
     var addOnsSelectIndex = 3
     
     // 存取顯示飲料、所點飲料內容資料
     var currentShowDrink = Drink(type: .單品茶, name: "", largePrice: 0, middlePrice: 0, detail: "", makeHot: true)
     var orderDrink = OrderDrink(drinkName: "", capacity: "大杯", sugar: "正常", ice: "正常", addOns: "無", count: 1, totalPrice: 0, buyersName: "")
-
-
+    
+    // 判斷是新訂單or修改訂單
+    var isEdit = false
+    var completeEdit: (OrderDrink) -> () = { item in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(currentShowDrink)
+        print(orderDrink)
         // Do any additional setup after loading the view.
         buyersNameTextField.delegate = self
+        
+        // 利用編輯的飲料名稱來找出要顯示的飲料，再把它設定給currentShowDrink（編輯點單用）
+        if let drink = drinks.first(where: { $0.name == orderDrink.drinkName }) {
+            currentShowDrink = drink
+        }
         
         // 顯示目前飲料資訊
         drinkImageView.image = UIImage(named: currentShowDrink.name)
@@ -42,10 +52,37 @@ class OrderViewController: UIViewController {
         }
         drinkDetailLabel.text = currentShowDrink.detail
         
+        // 初始畫面
+        // 利用SegmentedControl的titleForSegment來取得對應的index，讓SegmentedControl在正確的選項（自訂function）
+        capacitySegmentedControl.selectedSegmentIndex = decisionSegmentedControlIndex(segmentedControl: capacitySegmentedControl, segmentedControlTitle: orderDrink.capacity)
+        sugarSegmentedControl.selectedSegmentIndex = decisionSegmentedControlIndex(segmentedControl: sugarSegmentedControl, segmentedControlTitle: orderDrink.sugar)
+        iceSegmentedControl.selectedSegmentIndex = decisionSegmentedControlIndex(segmentedControl: iceSegmentedControl, segmentedControlTitle: orderDrink.ice)
+        addOnsSegmentedControl.selectedSegmentIndex = decisionSegmentedControlIndex(segmentedControl: addOnsSegmentedControl, segmentedControlTitle: orderDrink.addOns)
+        orderCountLabel.text = "\(orderDrink.count)"
+        buyersNameTextField.text = orderDrink.buyersName
+        // 變更Button的文字，以符合使用狀態
+        if isEdit == false {
+            checkButton.setTitle("加  入  購  物  車", for: .normal)
+        } else {
+            checkButton.setTitle("修  改  訂  單", for: .normal)
+        }
+        // 重置價錢，以重新計算金額，才不會讓舊金額被疊加上去
+        orderDrink.totalPrice = 0
+        
         // 鍵盤不擋住TextField的方法
         setKeyboardNotification()
     }
     
+    //  判斷SegmentedControl的選項位置
+    func decisionSegmentedControlIndex(segmentedControl: UISegmentedControl, segmentedControlTitle: String) -> Int {
+        for i in 0..<segmentedControl.numberOfSegments {
+            if let title = segmentedControl.titleForSegment(at: i), title == segmentedControlTitle {
+                return i
+            }
+        }
+        // 如果沒有篩選出來就設定成沒有選擇的狀態（selectedSegmentIndex = -1）
+        return UISegmentedControl.noSegment
+    }
     
     // 將SegmentedControl選擇的選項文字設定給orderDrink
     // 有些飲品不做溫、熱飲，所以在冰量欄位會做判斷
@@ -76,7 +113,6 @@ class OrderViewController: UIViewController {
             if (iceSegmentedControl.selectedSegmentIndex == 6 && sender.selectedSegmentIndex == 2) || (iceSegmentedControl.selectedSegmentIndex == 7 && sender.selectedSegmentIndex == 2) {
                 showAlerController(alerTitle: "溫、熱飲不得加菓玉")
                 sender.selectedSegmentIndex = addOnsSelectIndex
-                print(sender.selectedSegmentIndex)
             } else {
                 addOnsSelectIndex = sender.selectedSegmentIndex
             }
@@ -136,14 +172,16 @@ class OrderViewController: UIViewController {
         // 判斷是否有輸入訂購人名稱，沒有輸入的話跳出通知，有輸入就關掉頁面（之後會再加把資料傳到購物車的功能）
         if buyersNameTextField.text == nil || buyersNameTextField.text == "" {
             showAlerController(alerTitle: "請輸入訂購人名稱")
-            print(orderDrink)
-        } else {
-            print(orderDrink)
+        } else if isEdit == false {
+            ShoppingCart.shared.cartItems.append(orderDrink)
+            self.dismiss(animated: true)
+        } else if isEdit == true {
+            completeEdit(orderDrink)
             self.dismiss(animated: true)
         }
     }
     
-
+    
     /*
     // MARK: - Navigation
 

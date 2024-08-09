@@ -132,6 +132,7 @@ class HomeViewController: UIViewController {
         let controller = OrderViewController(coder: coder)
         guard let index = self.drinkCollectionView.indexPathsForSelectedItems?.first?.item else { return nil }
         controller?.currentShowDrink = selectDrinks[index]
+        controller?.isEdit = false
         return controller
     }
     
@@ -189,7 +190,7 @@ extension HomeViewController: UIScrollViewDelegate {
     }
 }
 
-// 擴展HomeViewController，遵循UICollectionViewDelegate、UICollectionViewDataSource，顯示我們的飲料
+// 擴展HomeViewController，遵循UICollectionViewDelegate、UICollectionViewDataSource，顯示飲料
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
