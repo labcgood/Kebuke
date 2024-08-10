@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct Drink {
-    let type: Type
+    let type: DrinkType
     let name: String
     let largePrice: Int
     let middlePrice: Int
@@ -18,7 +18,7 @@ struct Drink {
 }
 
 // 生成Drink時，方便輸入及減少打字錯誤
-enum Type:String {
+enum DrinkType:String {
     case 季節限定, 單品茶, 調茶, 雲蓋, 歐蕾
 }
 
