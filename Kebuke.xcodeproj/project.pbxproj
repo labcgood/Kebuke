@@ -19,6 +19,10 @@
 		0DD2F1C52C4903A600F408A1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD2F1C42C4903A600F408A1 /* HomeViewController.swift */; };
 		0DD2F1C72C4915E700F408A1 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD2F1C62C4915E700F408A1 /* OrderViewController.swift */; };
 		0DE6A8312C4A7CAC00C2B165 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE6A8302C4A7CAC00C2B165 /* OrderDetailViewController.swift */; };
+		0DEC3CFF2C6CBBFC00424AA8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0DEC3CFE2C6CBBFC00424AA8 /* Kingfisher */; };
+		0DEC3D012C71D3D700424AA8 /* UploadOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC3D002C71D3D700424AA8 /* UploadOrder.swift */; };
+		0DEC3D162C779A7500424AA8 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC3D152C779A7500424AA8 /* APIKey.swift */; };
+		0DEC3D182C779AAE00424AA8 /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DEC3D172C779AAE00424AA8 /* APIKey.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,9 @@
 		0DD2F1C42C4903A600F408A1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0DD2F1C62C4915E700F408A1 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		0DE6A8302C4A7CAC00C2B165 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		0DEC3D002C71D3D700424AA8 /* UploadOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadOrder.swift; sourceTree = "<group>"; };
+		0DEC3D152C779A7500424AA8 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		0DEC3D172C779AAE00424AA8 /* APIKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DEC3CFF2C6CBBFC00424AA8 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +60,7 @@
 		0DD2F1A42C48FE4000F408A1 = {
 			isa = PBXGroup;
 			children = (
+				0DEC3D132C7798BB00424AA8 /* APIKey */,
 				0DD2F1AF2C48FE4000F408A1 /* Kebuke */,
 				0DD2F1AE2C48FE4000F408A1 /* Products */,
 			);
@@ -68,21 +77,55 @@
 		0DD2F1AF2C48FE4000F408A1 /* Kebuke */ = {
 			isa = PBXGroup;
 			children = (
+				0DEC3D022C71DAF000424AA8 /* Model */,
+				0DEC3D032C71DB1400424AA8 /* View */,
+				0DEC3D042C71DB2000424AA8 /* Controller */,
 				0DD2F1B02C48FE4000F408A1 /* AppDelegate.swift */,
 				0DD2F1B22C48FE4000F408A1 /* SceneDelegate.swift */,
-				0DD2F1B62C48FE4000F408A1 /* Main.storyboard */,
+				0DD2F1B92C48FE4100F408A1 /* Assets.xcassets */,
+				0DD2F1BE2C48FE4100F408A1 /* Info.plist */,
+			);
+			path = Kebuke;
+			sourceTree = "<group>";
+		};
+		0DEC3D022C71DAF000424AA8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				0D5740492C52321C0025C4BC /* Drink.swift */,
 				0D5740552C6234660025C4BC /* ShoppingCart.swift */,
+				0DEC3D002C71D3D700424AA8 /* UploadOrder.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0DEC3D032C71DB1400424AA8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0DD2F1B62C48FE4000F408A1 /* Main.storyboard */,
+				0DD2F1BB2C48FE4100F408A1 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0DEC3D042C71DB2000424AA8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				0DD2F1C42C4903A600F408A1 /* HomeViewController.swift */,
 				0D5740472C5229D70025C4BC /* DrinkCollectionViewCell.swift */,
 				0DD2F1C62C4915E700F408A1 /* OrderViewController.swift */,
 				0DE6A8302C4A7CAC00C2B165 /* OrderDetailViewController.swift */,
 				0D5740512C60CC930025C4BC /* OrderDrinksTableViewCell.swift */,
-				0DD2F1B92C48FE4100F408A1 /* Assets.xcassets */,
-				0DD2F1BB2C48FE4100F408A1 /* LaunchScreen.storyboard */,
-				0DD2F1BE2C48FE4100F408A1 /* Info.plist */,
 			);
-			path = Kebuke;
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0DEC3D132C7798BB00424AA8 /* APIKey */ = {
+			isa = PBXGroup;
+			children = (
+				0DEC3D172C779AAE00424AA8 /* APIKey.plist */,
+				0DEC3D152C779A7500424AA8 /* APIKey.swift */,
+			);
+			path = APIKey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,6 +135,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0DD2F1C12C48FE4100F408A1 /* Build configuration list for PBXNativeTarget "Kebuke" */;
 			buildPhases = (
+				0DEC3D142C7799C100424AA8 /* ShellScript */,
 				0DD2F1A92C48FE4000F408A1 /* Sources */,
 				0DD2F1AA2C48FE4000F408A1 /* Frameworks */,
 				0DD2F1AB2C48FE4000F408A1 /* Resources */,
@@ -101,6 +145,9 @@
 			dependencies = (
 			);
 			name = Kebuke;
+			packageProductDependencies = (
+				0DEC3CFE2C6CBBFC00424AA8 /* Kingfisher */,
+			);
 			productName = Kebuke;
 			productReference = 0DD2F1AD2C48FE4000F408A1 /* Kebuke.app */;
 			productType = "com.apple.product-type.application";
@@ -129,6 +176,9 @@
 				Base,
 			);
 			mainGroup = 0DD2F1A42C48FE4000F408A1;
+			packageReferences = (
+				0DEC3CFD2C6CBBFC00424AA8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 0DD2F1AE2C48FE4000F408A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -144,12 +194,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DD2F1BA2C48FE4100F408A1 /* Assets.xcassets in Resources */,
+				0DEC3D182C779AAE00424AA8 /* APIKey.plist in Resources */,
 				0DD2F1BD2C48FE4100F408A1 /* Base in Resources */,
 				0DD2F1B82C48FE4000F408A1 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DEC3D142C7799C100424AA8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/APIKey/APIKey.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIG_FILE_BASE_NAME=\"APIKey\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/APIKey/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/APIKey/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0DD2F1A92C48FE4000F408A1 /* Sources */ = {
@@ -162,9 +234,11 @@
 				0D5740482C5229D70025C4BC /* DrinkCollectionViewCell.swift in Sources */,
 				0DE6A8312C4A7CAC00C2B165 /* OrderDetailViewController.swift in Sources */,
 				0D57404A2C52321C0025C4BC /* Drink.swift in Sources */,
+				0DEC3D162C779A7500424AA8 /* APIKey.swift in Sources */,
 				0D5740522C60CC930025C4BC /* OrderDrinksTableViewCell.swift in Sources */,
 				0D5740562C6234660025C4BC /* ShoppingCart.swift in Sources */,
 				0DD2F1C52C4903A600F408A1 /* HomeViewController.swift in Sources */,
+				0DEC3D012C71D3D700424AA8 /* UploadOrder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +391,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FUY7Q7WR79;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kebuke/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -345,6 +420,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FUY7Q7WR79;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kebuke/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -387,6 +463,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0DEC3CFD2C6CBBFC00424AA8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0DEC3CFE2C6CBBFC00424AA8 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DEC3CFD2C6CBBFC00424AA8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0DD2F1A52C48FE4000F408A1 /* Project object */;
 }

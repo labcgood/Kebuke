@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class OrderViewController: UIViewController {
     
@@ -25,8 +26,8 @@ class OrderViewController: UIViewController {
     var addOnsSelectIndex = 3
     
     // 存取顯示飲料、所點飲料內容資料
-    var currentShowDrink = Drink(type: .單品茶, name: "", largePrice: 0, middlePrice: 0, detail: "", makeHot: true)
-    var orderDrink = OrderDrink(drinkName: "", capacity: "大杯", sugar: "正常", ice: "正常", addOns: "無", count: 1, totalPrice: 0, buyersName: "")
+    var currentShowDrink = Drink(type: .單品茶, name: "", largePrice: 0, middlePrice: 0, detail: "", makeHot: true, image: Image(url: ""))
+    var orderDrink = OrderDrink(drinkName: "", capacity: "大杯", sugar: "正常", ice: "正常", addOns: "無", count: 1, totalPrice: 0, buyersName: "", imageUrl: "")
     
     // 判斷是新訂單or修改訂單
     var isEdit = false
@@ -44,12 +45,16 @@ class OrderViewController: UIViewController {
         }
         
         // 顯示目前飲料資訊
-        drinkImageView.image = UIImage(named: currentShowDrink.name)
+        //drinkImageView.image = UIImage(named: currentShowDrink.name)
+        let url = URL(string: currentShowDrink.image.url)
+        drinkImageView.kf.setImage(with: url)
+        
         if currentShowDrink.makeHot == true {
             drinkNameLabel.text = currentShowDrink.name + "Ⓗ"
         } else {
             drinkNameLabel.text = currentShowDrink.name
         }
+        
         drinkDetailLabel.text = currentShowDrink.detail
         
         // 初始畫面
@@ -149,6 +154,8 @@ class OrderViewController: UIViewController {
     
     // 存取飲料的其他資訊
     func updateOrderDrinkInfo() {
+        // 存取image
+        orderDrink.imageUrl = currentShowDrink.image.url
         // 存取飲品名稱
         orderDrink.drinkName = currentShowDrink.name
         // 存取訂購人名稱

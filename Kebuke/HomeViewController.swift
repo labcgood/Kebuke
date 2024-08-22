@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeViewController: UIViewController {
 
@@ -24,11 +25,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         adScrollView.delegate = self
         drinkCollectionView.delegate = self
         drinkCollectionView.dataSource = self
+        
         for i in 0...drinkTypeButtons.count-1 {
             drinkTypeButtons[i].layer.cornerRadius = 17
         }
@@ -37,9 +38,40 @@ class HomeViewController: UIViewController {
         addAd(imageNameArray: adImages)
         setupTimer()
         
-        // 初始要顯示的飲料
-        filterDrinkOfType(type: .季節限定)
-        self.drinkCollectionView.reloadData()
+        fetchMenuData()
+    }
+    
+    // 接API抓取資料
+    func fetchMenuData() {
+        if let url = URL(string: "https://api.airtable.com/v0/appazyAIzHhfRorTX/Drink") {
+            var request = URLRequest(url: url)
+            request.setValue("Bearer \(APIKey.default)", forHTTPHeaderField: "Authorization")
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let data {
+                    let decoder = JSONDecoder()
+                    do {
+                        let menuResponse = try decoder.decode(Menu.self, from: data)
+                        
+                        // 轉換資料：因為Airtable上的makeHot我是使用Checkbox類型去存取，如果資料不是true，就不會有makeHot這個屬性，所以我將makeHot=nil的物件轉成makeHot=false；image因為是用array包著的資料，我直接將array的第0筆資料設定給tmpItem的image
+                        let transformDrinks = menuResponse.records.map({
+                            let tmpItem = $0.fields
+                            return Drink(type: tmpItem.type, name: tmpItem.name, largePrice: tmpItem.largePrice, middlePrice: tmpItem.middlePrice, detail: tmpItem.detail, makeHot: tmpItem.makeHot ?? false, image: tmpItem.image[0])
+                        })
+                        // 將抓取的菜單設定給drinks
+                        drinks = transformDrinks
+                        
+                        // 處理顯示畫面的動作(篩選初始要顯示的飲料、更新collectionView)
+                        DispatchQueue.main.async {
+                            self.filterDrinkOfType(type: .季節限定)
+                            self.drinkCollectionView.reloadData()
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+            }.resume()
+        }
     }
     
     // 設定PageControl
@@ -121,9 +153,11 @@ class HomeViewController: UIViewController {
     }
     
     // 篩選各種類的飲料，設定給selectDrinks，讓CollectionView顯示出來
-    func filterDrinkOfType(type: Type) {
+    func filterDrinkOfType(type: DrinkType) {
         let currentDrinkType = drinks.filter { $0.type == type }
         selectDrinks = currentDrinkType
+        // 切換分類時要讓CollectionView從頂部開始顯示
+        self.drinkCollectionView.setContentOffset(CGPoint.zero, animated: false)
     }
     
 
@@ -200,8 +234,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DrinkCollectionViewCell.reuseIdentifier, for: indexPath) as! DrinkCollectionViewCell
         // 顯示圖片
-        let image = UIImage(named: selectDrinks[indexPath.item].name)
-        cell.drinkImageView.image = image
+//        let image = UIImage(named: selectDrinks[indexPath.item].name)
+//        cell.drinkImageView.image = image
+        let url = URL(string: selectDrinks[indexPath.item].image.url)
+        cell.drinkImageView.kf.setImage(with: url)
         // 顯示飲料名稱(可做熱飲後面+Ⓗ)
         if selectDrinks[indexPath.item].makeHot == true {
             cell.drinkNameLabel.text = selectDrinks[indexPath.item].name + "Ⓗ"

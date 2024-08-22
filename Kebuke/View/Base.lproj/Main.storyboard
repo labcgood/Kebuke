@@ -523,14 +523,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIv-Ph-zdp">
-                                <rect key="frame" x="15" y="719.66666666666663" width="363" height="34.333333333333371"/>
-                                <color key="backgroundColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="送  出  訂  單" cornerStyle="large">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HnI-vB-UDY">
                                 <rect key="frame" x="15" y="680.66666666666663" width="363" height="24"/>
                                 <subviews>
@@ -647,6 +639,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="還沒加入商品" translatesAutoresizingMaskIntoConstraints="NO" id="TGS-wj-EaA">
+                                <rect key="frame" x="50" y="-86" width="293" height="1024"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIv-Ph-zdp">
+                                <rect key="frame" x="15" y="719.66666666666663" width="363" height="34.333333333333371"/>
+                                <color key="backgroundColor" red="0.69803921570000005" green="0.57254901960000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="送  出  訂  單" cornerStyle="large">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="submitTheOrder:" destination="nZo-oK-Nbl" eventType="touchUpInside" id="zLP-c7-Rjc"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="購  物  車" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekR-6B-2LS">
                                 <rect key="frame" x="147.33333333333334" y="59" width="98.333333333333343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -657,16 +663,20 @@
                         <viewLayoutGuide key="safeArea" id="Atg-yJ-9Hm"/>
                         <color key="backgroundColor" red="0.0" green="0.24313725489999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="TGS-wj-EaA" firstAttribute="centerY" secondItem="74H-QM-wxd" secondAttribute="centerY" id="0n8-4L-mKi"/>
                             <constraint firstItem="KB5-th-tfW" firstAttribute="top" secondItem="ekR-6B-2LS" secondAttribute="bottom" constant="15" id="1nO-l4-BoS"/>
                             <constraint firstItem="uIv-Ph-zdp" firstAttribute="top" secondItem="HnI-vB-UDY" secondAttribute="bottom" constant="15" id="52t-g8-b2a"/>
                             <constraint firstItem="KB5-th-tfW" firstAttribute="leading" secondItem="Atg-yJ-9Hm" secondAttribute="leading" id="7Ir-qT-zin"/>
+                            <constraint firstItem="TGS-wj-EaA" firstAttribute="leading" secondItem="74H-QM-wxd" secondAttribute="leading" constant="50" id="CmD-hx-FH1"/>
                             <constraint firstItem="ekR-6B-2LS" firstAttribute="top" secondItem="Atg-yJ-9Hm" secondAttribute="top" id="NKy-0E-Mya"/>
                             <constraint firstItem="Atg-yJ-9Hm" firstAttribute="trailing" secondItem="uIv-Ph-zdp" secondAttribute="trailing" constant="15" id="P8Q-8P-34D"/>
                             <constraint firstItem="uIv-Ph-zdp" firstAttribute="leading" secondItem="HnI-vB-UDY" secondAttribute="leading" id="UDn-Os-Vcw"/>
+                            <constraint firstAttribute="trailing" secondItem="TGS-wj-EaA" secondAttribute="trailing" constant="50" id="Ugw-4m-1nX"/>
                             <constraint firstItem="KB5-th-tfW" firstAttribute="trailing" secondItem="Atg-yJ-9Hm" secondAttribute="trailing" id="YMc-UI-ksY"/>
                             <constraint firstItem="Atg-yJ-9Hm" firstAttribute="bottom" secondItem="uIv-Ph-zdp" secondAttribute="bottom" constant="15" id="ZHx-Xk-uUJ"/>
                             <constraint firstItem="HnI-vB-UDY" firstAttribute="top" secondItem="KB5-th-tfW" secondAttribute="bottom" constant="15" id="hHq-G8-V99"/>
                             <constraint firstItem="Atg-yJ-9Hm" firstAttribute="bottom" secondItem="uIv-Ph-zdp" secondAttribute="bottom" constant="15" id="jhD-gf-uTY"/>
+                            <constraint firstItem="TGS-wj-EaA" firstAttribute="centerX" secondItem="74H-QM-wxd" secondAttribute="centerX" id="o2f-fH-IfJ"/>
                             <constraint firstItem="uIv-Ph-zdp" firstAttribute="trailing" secondItem="HnI-vB-UDY" secondAttribute="trailing" id="qrR-Kc-LFM"/>
                             <constraint firstItem="ekR-6B-2LS" firstAttribute="centerX" secondItem="74H-QM-wxd" secondAttribute="centerX" id="stU-ue-fFo"/>
                             <constraint firstItem="uIv-Ph-zdp" firstAttribute="leading" secondItem="Atg-yJ-9Hm" secondAttribute="leading" constant="15" id="vFB-W6-wJQ"/>
@@ -675,6 +685,7 @@
                     <tabBarItem key="tabBarItem" title="購物車" image="handbag.fill" catalog="system" id="Qo1-li-7gY"/>
                     <navigationItem key="navigationItem" id="Mm0-Vu-W7k"/>
                     <connections>
+                        <outlet property="noItemImageView" destination="TGS-wj-EaA" id="H0w-xd-zdh"/>
                         <outlet property="orderDrinksTableView" destination="KB5-th-tfW" id="tFl-w6-kvq"/>
                         <outlet property="submitTheOrderButton" destination="uIv-Ph-zdp" id="tEo-B9-4Yp"/>
                         <outlet property="totalPriceLabel" destination="TGi-Qm-Mig" id="ozu-lG-hib"/>
@@ -682,11 +693,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aD5-hQ-Kgi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="354"/>
+            <point key="canvasLocation" x="1102" y="349"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7vr-yS-gp5"/>
+        <segue reference="Tg0-HC-Vp8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="handbag.fill" catalog="system" width="128" height="116"/>
@@ -694,6 +705,7 @@
         <image name="minus.circle.fill" catalog="system" width="128" height="123"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="還沒加入商品" width="1024" height="1024"/>
         <image name="金蘋春芽" width="2000" height="1500"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
