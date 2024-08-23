@@ -15,5 +15,11 @@ class DrinkCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var drinkImageView: UIImageView!
     @IBOutlet weak var drinkNameLabel: UILabel!
     @IBOutlet weak var drinkPriceLabel: UILabel!
-
+    @IBOutlet weak var view: UIView!
+ 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+    }
 }

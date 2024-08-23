@@ -251,7 +251,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func setupCellSize() {
-        let itemSpace: Double = 0
+        let itemSpace: Double = 3
         let columCount: Double = 2
         // 為了使用flowLayout屬性(用來排版、控制cell大小)，所以我們這邊進行轉型。
         let flowLayout = self.drinkCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
