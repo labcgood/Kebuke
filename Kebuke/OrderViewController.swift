@@ -35,7 +35,6 @@ class OrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(orderDrink)
         // Do any additional setup after loading the view.
         buyersNameTextField.delegate = self
         
@@ -76,6 +75,11 @@ class OrderViewController: UIViewController {
         
         // 鍵盤不擋住TextField的方法
         setKeyboardNotification()
+    }
+    
+    // 點空白處收起鍵盤
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     //  判斷SegmentedControl的選項位置

@@ -17,6 +17,7 @@ class DrinkCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var drinkPriceLabel: UILabel!
     @IBOutlet weak var view: UIView!
  
+    // 元件設定
     override func awakeFromNib() {
         super.awakeFromNib()
         view.layer.cornerRadius = 5
